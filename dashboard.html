@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ladybug Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Ladybug Dashboard</h1>
+    <div id="chart" style="width:100%;max-width:700px;height:400px;"></div>
+
+    <script>
+        // JSON 파일 URL: GitHub에 업로드한 JSON 파일 경로를 여기에 입력
+        const jsonDataUrl = "https://raw.githubusercontent.com/yourusername/ladybug-dashboard/main/data.json";
+
+        // JSON 데이터 읽기 및 시각화
+        fetch(jsonDataUrl)
+            .then(response => response.json())
+            .then(data => {
+                // JSON 데이터 처리 예제
+                const labels = data.map(item => item.Mode); // 'Mode' 필드
+                const values = data.map(item => item.Percentage); // 'Percentage' 필드
+
+                // Plotly 파이 차트 생성
+                const plotData = [{
+                    labels: labels,
+                    values: values,
+                    type: 'pie'
+                }];
+
+                const layout = { title: "무당이와 도보의 비율" };
+                Plotly.newPlot('chart', plotData, layout);
+            })
+            .catch(error => console.error("JSON 데이터 로드 에러:", error));
+    </script>
+</body>
+</html>
