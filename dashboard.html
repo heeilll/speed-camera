@@ -8,21 +8,21 @@
 </head>
 <body>
     <h1>Ladybug Dashboard</h1>
-    <div id="chart" style="width:100%;max-width:700px;height:400px;"></div>
+    <div id="chart" style="width:100%; max-width:700px; height:400px;"></div>
 
     <script>
-        // GitHub JSON 파일 경로
+        // JSON 파일 경로 (GitHub URL)
         const jsonDataUrl = "https://github.com/heeilll/speed-camera/blob/main/data.json";
 
         // JSON 데이터 로드 및 시각화
         fetch(jsonDataUrl)
             .then(response => response.json())
             .then(data => {
-                // 예제: JSON에서 필요한 데이터 추출
+                // 예시: JSON 데이터에서 필요한 항목 추출
                 const labels = data.map(item => item.Mode);
                 const values = data.map(item => item.Percentage);
 
-                // Plotly 그래프 생성
+                // Plotly 그래프 데이터 설정
                 const plotData = [{
                     labels: labels,
                     values: values,
